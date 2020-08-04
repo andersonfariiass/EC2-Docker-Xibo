@@ -1,4 +1,5 @@
 #!/bin/bash
+#teste
 
 DIR="/opt/xibo/"
 
