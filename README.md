@@ -28,7 +28,6 @@ Siga o passo a passo da documentação oficial - https://docs.aws.amazon.com/pt_
 # Configurando o Jenkins
 - Após a instalação do servidor jenkins será necessários fazer alguns ajustes. Para que o jenkins acesse a aws é necessário salvar o access_key, secret_key e region em um arquivo chamado provider.tf.
 - Faça acesso ssh a maquina do jenkins e crie o arquivo provider.tf no diretorio /var/lib/jenkins/workspaces/diretorio_projeto
-- Depois exporte as variaveis.
 
 - Estrutura do arquivo provider.tf
 
@@ -38,7 +37,8 @@ Siga o passo a passo da documentação oficial - https://docs.aws.amazon.com/pt_
   			region     = "my_region"
 		}
 
-- Configure o ansible para ignorar a verificação de autenticidade do SSH na primeira conexão, vá ate o aqrquivo /etc/ansible/ansible.cfg e edite/adicione a seguinte linha: - host_key_checking = False
+- Configure o ansible para ignorar a verificação de autenticidade do SSH na primeira conexão, vá ate o aqrquivo /etc/ansible/ansible.cfg e edite/adicione a seguinte linha:
+	- host_key_checking = False
 - Para permitir que o ansible se conecte com as novas instâncias criadas é necessário fazer o upload da chave.pem que será usada para conexão ssh no dirétorio "\~/.ssh/chave.pem" do servidor Jenkins, pode ser feito usando o software "Bitvise SSH Client" (https://www.bitvise.com/ssh-client-download) no Windows ou usando o cliente scp no linux com o comando "sudo scp -i jenkins.pem nome_da_chave_para_upload.pem user@ip_jenkins_server:\~/.ssh/chave.pem".
 - Você pode se deparar com o seguinte erro ao tentar executar sua primeira build no Jenkis "sudo: no tty present and no askpass program specified". Para resolver isso basta incluir a seguinte linha no arquivo /etc/sudoers do servidor Jenkins:
 	- jenkins ALL=(ALL) NOPASSWD: ALL
