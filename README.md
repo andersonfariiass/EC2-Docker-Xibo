@@ -8,18 +8,18 @@ O projeto consiste na criação de um pipeline de entrega contínua de infraestr
 
 - Listagem de diretórios e arquivos:
 		
-	- Ansible - Arquivos e procedimentos para a gestão de configuração do ambiente.
-	- Docker - Arquivos e procedimentos para deploy da aplicação com docker e docker-compose.
-	- Terraform - Arquivos e procedimentos para deploy da infraestrutura na AWS (infra as code).
-  	- Jenkinsfile - Arquivo que contém a definição do pipeline Jenkins.
-	- teste.sh - Arquivo em Shell Script reponsável por realizar testes no ambiente e na aplicação.
+		- Ansible - Arquivos e procedimentos para a gestão de configuração do ambiente.
+		- Docker - Arquivos e procedimentos para deploy da aplicação com docker e docker-compose.
+		- Terraform - Arquivos e procedimentos para deploy da infraestrutura na AWS (infra as code).
+  		- Jenkinsfile - Arquivo que contém a definição do pipeline Jenkins.
+		- teste.sh - Arquivo em Shell Script reponsável por realizar testes no ambiente e na aplicação.
 
 - Procedimeto para configuração do ambiente
 	
-	- Instale um servidor jenkins - mais informações sobre a instalação (https://jenkins.io/doc/).
-	- Instale o terraform na maquina jenkins - mais informações sobre a instalação (https://www.terraform.io/docs/index.html).
-	- Instale o ansible na máquina jenkins - mais informações sobre a instalação (https://www.ansible.com/).
-	- Tenha uma conta na AWS - mais informações de como criar uma conta (https://aws.amazon.com/).
+		- Instale um servidor jenkins - mais informações sobre a instalação (https://jenkins.io/doc/).
+		- Instale o terraform na maquina jenkins - mais informações sobre a instalação (https://www.terraform.io/docs/index.html).
+		- Instale o ansible na máquina jenkins - mais informações sobre a instalação (https://www.ansible.com/).
+		- Tenha uma conta na AWS - mais informações de como criar uma conta (https://aws.amazon.com/).
 	
 # Criando ACCESS_KEY na AWS
 - Para que o jenkins possa acessar os recursos da AWS é necessária criar um access_key.
@@ -38,15 +38,17 @@ Siga o passo a passo da documentação oficial - https://docs.aws.amazon.com/pt_
 		}
 
 - Configure o ansible para ignorar a verificação de autenticidade do SSH na primeira conexão, vá ate o aqrquivo /etc/ansible/ansible.cfg e edite/adicione a seguinte linha:
-	- host_key_checking = False
+		- host_key_checking = False
 - Para permitir que o ansible se conecte com as novas instâncias criadas é necessário fazer o upload da chave.pem que será usada para conexão ssh no dirétorio "\~/.ssh/chave.pem" do servidor Jenkins, pode ser feito usando o software "Bitvise SSH Client" (https://www.bitvise.com/ssh-client-download) no Windows ou usando o cliente scp no linux com o comando "sudo scp -i jenkins.pem nome_da_chave_para_upload.pem user@ip_jenkins_server:\~/.ssh/chave.pem".
 - Você pode se deparar com o seguinte erro ao tentar executar sua primeira build no Jenkis "sudo: no tty present and no askpass program specified". Para resolver isso basta incluir a seguinte linha no arquivo /etc/sudoers do servidor Jenkins:
-	- jenkins ALL=(ALL) NOPASSWD: ALL
+
+		- jenkins ALL=(ALL) NOPASSWD: ALL
 	
 - Instale os seguintes plugins no jenkins
-	- Amazon web services sdk
-	- Ansible plugin
-	- Blue ocean (visualização do pipeline)
-	- Git plugin
-	- Terraform plugin
-	- Ansible	
+
+		- Amazon web services sdk
+		- Ansible plugin
+		- Blue ocean (visualização do pipeline)
+		- Git plugin
+		- Terraform plugin
+		- Ansible	
